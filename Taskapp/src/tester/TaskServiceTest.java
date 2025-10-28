@@ -6,6 +6,7 @@ import java.sql.Connection;
 import java.sql.Statement;
 import java.util.List;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -20,6 +21,16 @@ class TaskServiceTest {
 	@BeforeEach
 	void setup() {
 		taskService = new TaskService();
+	}
+
+	@AfterEach
+	void teardown() {
+		// DELETE TASKS AFTER EACH TEST
+		try (Connection conn = UserAuth.getConnection(); Statement state = conn.createStatement()) {
+			state.executeUpdate("DELETE FROM tasks;");
+		} catch (Exception e) {
+			fail("Teardown failed." + e.getMessage());
+		}
 	}
 
 	// TEST FOR CREATING TASKS TABLE
