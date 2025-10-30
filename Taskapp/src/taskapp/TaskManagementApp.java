@@ -212,7 +212,8 @@ public class TaskManagementApp {
 		JPanel card = new JPanel(new BorderLayout(5, 5));
 		// Border color based on task state
 		Color borderColor = task.isComplete() ? new Color(0, 150, 0)
-				: task.getPriority().equals("High") ? new Color(200, 0, 0) : new Color(100, 100, 100);
+				: task.getPriority().equals("High") ? new Color(200, 0, 0)
+						: task.getPriority().equals("Medium") ? new Color(255, 200, 0) : new Color(100, 100, 100);
 		card.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createLineBorder(borderColor, 2),
 				BorderFactory.createEmptyBorder(8, 8, 8, 8)));
 		card.setBackground(Color.WHITE);
